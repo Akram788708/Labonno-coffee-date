@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A Surprise For Labonno ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+
+.card{
+background:#fff;
+width:92%;
+max-width:520px;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 15px 35px rgba(0,0,0,.2);
+animation:fade .6s;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+h1{color:#ff2d55}
+p{margin:15px 0;font-size:18px}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-size:17px;
+margin:10px;
+}
+
+.yes{
+background:#ff2d55;
+color:#fff;
+}
+
+.no{
+background:#ddd;
+}
+
+.hidden{
+display:none;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:16px;
+}
+
+#hearts{
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+}
+
+.heart{
+position:absolute;
+color:#ff2d55;
+font-size:24px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-50px)}
+100%{transform:translateY(110vh)}
+}
+</style>
+</head>
+
+<body>
+
+<div id="hearts"></div>
+
+<div class="card">
+
+<div id="page1">
+
+<h1>Hi Labonno ❤️</h1>
+
+<p>
+I made something special only for you.
+</p>
+
+<p>
+Please don't rush...
+Take a deep breath,
+smile 😊
+and press continue.
+</p>
+
+<button class="yes" onclick="nextPage()">
+Continue ☕
+</button>
+
+</div>
+
+<div id="page2" class="hidden">
+
+<h1>One Question ❤️</h1>
+
+<p>
+Will you go on a Coffee Date with me?
+</p>
+
+<button class="yes" onclick="showForm()">
+YES ❤️
+</button>
+
+<button class="no" id="noBtn">
+NO 🙈
+</button>
+
+</div>
+
+<div id="form" class="hidden">
+<h2>Let's Plan Our Coffee Date ☕❤️</h2>
+
+<input type="date" id="date">
+
+<input type="time" id="time">
+
+<select id="place">
+<option value="">Choose Coffee Shop</option>
+<option>Tabaq Coffee</option>
+<option>Coffee House</option>
+<option>Chillox</option>
+<option>Takeout</option>
+<option>You Decide ❤️</option>
+</select>
+
+<select id="coffee">
+<option value="">Choose Your Coffee</option>
+<option>Cappuccino ☕</option>
+<option>Latte 🥛</option>
+<option>Mocha 🍫</option>
+<option>Americano ☕</option>
+<option>Cold Coffee 🧋</option>
+<option>Hot Chocolate 🍫</option>
+</select>
+
+<button class="yes" onclick="submitData()">
+Confirm Our Date ❤️
+</button>
+
+</div>
+
+<div id="done" class="hidden">
+
+<h1>Thank You, Labonno ❤️</h1>
+
+<p>
+I can't wait to enjoy this beautiful coffee date with you.
+</p>
+
+<p>
+Today it's just a coffee date...
+but I truly hope this is only the beginning of many beautiful memories together.
+</p>
+
+<p>
+One day, I hope to arrange something much bigger and more special with you.
+I hope I'll have the honor of asking you to spend the rest of your life with me. 💍❤️
+</p>
+
+<h2>See You Soon ☕🌹</h2>
+
+</div>
+
+</div>
+
+<script>
+
+const api="https://script.google.com/macros/s/AKfycbzL2J-KYwM0iHN0a7TQu1TY00glSllXoajRdAnvKW1CVKI6c3BfwLFjkIdcrGaLyA1u/exec";
+
+function nextPage(){
+document.getElementById("page1").classList.add("hidden");
+document.getElementById("page2").classList.remove("hidden");
+}
+
+function showForm(){
+document.getElementById("page2").classList.add("hidden");
+document.getElementById("form").classList.remove("hidden");
+}
+async function submitData(){
+
+const date=document.getElementById("date").value;
+const time=document.getElementById("time").value;
+const place=document.getElementById("place").value;
+const coffee=document.getElementById("coffee").value;
+
+if(date==""||time==""||place==""||coffee==""){
+alert("Please complete all fields ❤️");
+return;
+}
+
+try{
+
+await fetch(api,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+date:date,
+time:time,
+place:place,
+coffee:coffee
+})
+});
+
+document.getElementById("form").classList.add("hidden");
+document.getElementById("done").classList.remove("hidden");
+
+}catch(e){
+
+alert("Something went wrong. Please try again.");
+
+}
+
+}
+
+const no=document.getElementById("noBtn");
+
+no.addEventListener("mouseover",()=>{
+
+no.style.position="fixed";
+no.style.left=Math.random()*80+"vw";
+no.style.top=Math.random()*80+"vh";
+
+});
+
+for(let i=0;i<30;i++){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.animationDelay=Math.random()*5+"s";
+
+h.style.fontSize=(18+Math.random()*20)+"px";
+
+document.getElementById("hearts").appendChild(h);
+
+}
+
+</script>
+
+</body>
+</html>
