@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Date for Labonno ❤️</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+text-align:center;
+color:#333;
+}
+
+.box{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+width:90%;
+max-width:500px;
+}
+
+button{
+padding:12px 25px;
+margin:10px;
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+}
+
+.yes{
+background:#ff4d6d;
+color:white;
+}
+
+.no{
+background:#ddd;
+}
+
+.hidden{
+display:none;
+}
+
+select,input{
+width:90%;
+padding:10px;
+margin:10px;
+font-size:16px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<div id="page1">
+<h1>Hey Labonno ❤️</h1>
+<p>I made a little surprise just for you.</p>
+<button onclick="next()">Continue ☕</button>
+</div>
+
+<div id="page2" class="hidden">
+<h2>Will you go on a coffee date with me? ☕</h2>
+
+<button class="yes" onclick="showForm()">YES ❤️</button>
+
+<button class="no" id="noBtn">NO 😜</button>
+</div>
+
+<div id="form" class="hidden">
+
+<h2>Let's Plan Our Date 💖</h2>
+
+<input type="date" id="date">
+
+<input type="time" id="time">
+
+<select id="place">
+<option>Takeout</option>
+<option>Coffee House</option>
+<option>Tabaq Coffee</option>
+<option>You Choose ❤️</option>
+</select>
+
+<select id="coffee">
+<option>Cappuccino</option>
+<option>Latte</option>
+<option>Mocha</option>
+<option>Cold Coffee</option>
+<option>Hot Chocolate</option>
+</select>
+
+<br>
+
+<button class="yes" onclick="finish()">Confirm ❤️</button>
+
+</div>
+
+<div id="done" class="hidden">
+
+<h1>🎉 Date Confirmed 🎉</h1>
+
+<p>Thank you Labonno ❤️</p>
+
+<p>I can't wait to spend a beautiful time with you ☕🥰</p>
+
+<h2>See You Soon ❤️</h2>
+
+</div>
+
+</div>
+
+<script>
+
+function next(){
+document.getElementById("page1").classList.add("hidden");
+document.getElementById("page2").classList.remove("hidden");
+}
+
+function showForm(){
+document.getElementById("page2").classList.add("hidden");
+document.getElementById("form").classList.remove("hidden");
+}
+
+function finish(){
+document.getElementById("form").classList.add("hidden");
+document.getElementById("done").classList.remove("hidden");
+}
+
+const no=document.getElementById("noBtn");
+
+no.addEventListener("mouseover",()=>{
+no.style.position="absolute";
+no.style.left=Math.random()*80+"%";
+no.style.top=Math.random()*80+"%";
+});
+
+</script>
+
+</body>
+</html>
